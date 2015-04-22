@@ -1,0 +1,66 @@
+NAME=kafka
+CONFIG_PATH=/etc/kafka
+DEFAULT=/etc/default/$NAME
+KAFKA_PATH=/usr/bin
+KAFKA_USER=kafka
+KAFKA_GROUP=kafka
+
+KAFKA_PID="/var/run/$NAME.pid"
+
+
+# Make sure kafka is started with system locale
+if [ -r /etc/default/locale ]; then
+        . /etc/default/locale
+        export LANG
+fi
+
+. /lib/lsb/init-functions
+
+if [ -f "$DEFAULT" ]; then
+    . "$DEFAULT"
+fi
+
+case "$1" in
+  start)
+        # Start daemon.
+        echo "Starting $NAME";
+        start-stop-daemon --start -b -u "$KAFKA_USER" -g "$KAFKA_GROUP" \
+            -c "$KAFKA_USER" -m -p "$KAFKA_PID" \
+            -x "$KAFKA_PATH/kafka-server-start" -- $CONFIG_PATH/server.properties
+        ;;
+  stop)
+        # Stop daemons.
+        echo "Shutting down $NAME";
+        start-stop-daemon --stop --pidfile "$KAFKA_PID" \
+            --user "$KAFKA_USER"
+        ;;
+  restart)
+        $0 stop
+        sleep 2
+        $0 start
+        ;;
+  status)
+       set +e
+       start-stop-daemon --test --start --pidfile "$KAFKA_PID" \
+                --user "$KAFKA_USER" --exec "java" \
+                >/dev/null 2>&1
+        if [ "$?" = "0" ]; then
+
+                if [ -f "$KAFKA_PID" ]; then
+                    log_success_msg "$NAME is not running, but pid file exists."
+                        exit 1
+                else
+                    log_success_msg "$NAME is not running."
+                        exit 3
+                fi
+        else
+                log_success_msg "$NAME is running with pid `cat $KAFKA_PID`"
+        fi
+        set -e
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0

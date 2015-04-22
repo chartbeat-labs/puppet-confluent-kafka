@@ -4,16 +4,31 @@
 # It sets variables according to platform.
 #
 class confluent_kafka::params {
-  $scala_version     = '2.10.4',
+  $scala_version     = '2.10.4'
   $service_name      = 'kafka'
-  $version           = '0.8.2.0-1',
-  $install_java      = true,
-  $restart_on_change = false,
-  $manage_service    = true,
+  $package_name      = "confluent-kafka"
+  $version           = '0.8.2.0-1'
+  $install_java      = false
+  $install_service   = true
+  $restart_on_change = false
+  $manage_service    = true
+  $manage_repo       = true
+  $zk_hosts          = ['localhost:2181']
+  $zk_chroot         = ''
+  $max_nofiles       = '65535'
+  $log_dirs          = ['/tmp/kafka-logs']
+  $app_log_dir       = '/var/log/kafka'
+  $jvm_heap_mem      = '-Xmx1G -Xms1G'
+  $jvm_perf_opts     = '-XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35'
+  $jmx_opts          = '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=9999'
 
-  $broker_config_defaults = {
-    'broker.id'                                     => undef,
-    'log.dirs'                                      => '/tmp/kafka-logs',
+  $brokers           = {
+      'localhost' => 0,
+  }
+
+  $kafka_config_defaults = {
+    'broker.id'                                     => '',
+    'log.dirs'                                      => $log_dirs,
     'port'                                          => '9092',
     'zookeeper.connect'                             => '',
     'message.max.bytes'                             => '1000000',
@@ -21,9 +36,6 @@ class confluent_kafka::params {
     'num.io.threads'                                => '8',
     'background.threads'                            => '4',
     'queued.max.requests'                           => '500',
-    'host.name'                                     => '',
-    'advertised.host.name'                          => '',
-    'advertised.port'                               => '',
     'socket.send.buffer.bytes'                      => '102400',
     'socket.receive.buffer.bytes'                   => '102400',
     'socket.request.max.bytes'                      => '104857600',
@@ -37,7 +49,6 @@ class confluent_kafka::params {
     'log.retention.check.interval.ms'               => '300000',
     'log.cleaner.enable'                            => false,
     'log.cleaner.threads'                           => '1',
-    'log.cleaner.io.max.bytes.per.second'           => '',
     'log.cleaner.dedupe.buffer.size'                => '524288000',
     'log.cleaner.io.buffer.size'                    => '524288',
     'log.cleaner.io.buffer.load.factor'             => '0.9',
@@ -46,9 +57,9 @@ class confluent_kafka::params {
     'log.cleaner.delete.retention.ms'               => '86400000',
     'log.index.size.max.bytes'                      => '10485760',
     'log.index.interval.bytes'                      => '4096',
-    'log.flush.interval.messages'                   => '',
+    'log.flush.interval.messages'                   => '10000',
     'log.flush.scheduler.interval.ms'               => '3000',
-    'log.flush.interval.ms'                         => '',
+    'log.flush.interval.ms'                         => '3000',
     'log.delete.delay.ms'                           => '60000',
     'log.flush.offset.checkpoint.interval.ms'       => '60000',
     'auto.create.topics.enable'                     => true,
@@ -75,7 +86,8 @@ class confluent_kafka::params {
     'auto.leader.rebalance.enable'                  => true,
     'leader.imbalance.per.broker.percentage'        => '10',
     'leader.imbalance.check.interval.seconds'       => '300',
-    'offset.metadata.max.bytes'                     => '1024'
+    'offset.metadata.max.bytes'                     => '1024',
+    'delete.topic.enable'                           => false,
   }
 
 }
