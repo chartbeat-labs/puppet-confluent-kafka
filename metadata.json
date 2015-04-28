@@ -1,6 +1,6 @@
 {
   "name": "puppet-confluent_kafka",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Chartbeat",
   "summary": "Installs Confluent's Kafka Package",
   "license": "MIT",

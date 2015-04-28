@@ -1,2 +1,5 @@
+2015-04-28 Release 0.2.0
+- Fix issues with metadata.json preventing install
+
 2015-04-28 Release 0.1.0
 - Initial release
