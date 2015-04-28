@@ -58,6 +58,9 @@
 # [*jmx_opts*]
 #   Setup and configure JMX
 #
+# [*log4j_opts*]
+#   Override Log4J file
+#
 
 class confluent_kafka (
   $package_name      = $::confluent_kafka::params::package_name,
@@ -78,6 +81,7 @@ class confluent_kafka (
   $jvm_heap_mem      = $::confluent_kafka::params::jvm_heap_mem,
   $jvm_perf_opts     = $::confluent_kafka::params::jvm_perf_opts,
   $jmx_opts          = $::confluent_kafka::params::jmx_opts,
+  $log4j_opts        = $::confluent_kafka::params::log4j_opts,
 
 ) inherits ::confluent_kafka::params {
 
