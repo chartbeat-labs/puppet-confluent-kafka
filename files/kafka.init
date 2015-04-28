@@ -32,7 +32,8 @@ case "$1" in
         # Stop daemons.
         echo "Shutting down $NAME";
         start-stop-daemon --stop --pidfile "$KAFKA_PID" \
-            --user "$KAFKA_USER"
+            --user "$KAFKA_USER" \
+            --retry=TERM/120/KILL/5
         ;;
   restart)
         $0 stop
