@@ -1,3 +1,7 @@
+2015-04-28 Release 0.3.0
+- Ensure log env variables are exported so they are picked up by startup
+scripts
+
 2015-04-28 Release 0.2.0
 - Fix issues with metadata.json preventing install
 
