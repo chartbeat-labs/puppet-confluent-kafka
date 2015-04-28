@@ -17,6 +17,8 @@ Module for install and managing Confluent's ([http://confluent.io/]) distributio
 
 Currently only tested on Ubuntu 12.04
 
+[![Build Status](https://travis-ci.org/chartbeat-labs/puppet-confluent-kafka.svg)](https://travis-ci.org/chartbeat-labs/puppet-confluent-kafka)
+
 ## Module Description
 
 Module that manages the installation and configuration of Confluent's distribution of Kafka.  Currently only supports brokers
