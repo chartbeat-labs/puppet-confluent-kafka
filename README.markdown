@@ -13,7 +13,7 @@
 
 ## Overview
 
-Module for install and managing Confluent's ([http://confluent.io/]) distribution of Kafka.
+Unofficial module for install and managing Confluent's ([http://confluent.io/]) distribution of Kafka.
 
 Currently only tested on Ubuntu 12.04
 
