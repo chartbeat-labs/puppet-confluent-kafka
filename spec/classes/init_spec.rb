@@ -35,9 +35,9 @@ describe 'confluent_kafka' do
           :restart_on_change => true,
           }}
 
-          let (:facts) {{
-            :fqdn => 'test01.example.com'
-          }}
+          let (:facts) {
+            facts.merge(:fqdn => 'test01.example.com')
+          }
 
           it { is_expected.to compile.with_all_deps }
 
