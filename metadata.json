@@ -1,5 +1,5 @@
 {
-  "name": "puppet-confluent_kafka",
+  "name": "chartbeat-confluent_kafka",
   "version": "0.3.0",
   "author": "Chartbeat",
   "summary": "Installs Confluent's Kafka Package",
