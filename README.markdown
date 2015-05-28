@@ -13,7 +13,7 @@
 
 ## Overview
 
-Unofficial module for install and managing Confluent's ([http://confluent.io/]) distribution of Kafka.
+Unofficial module for install and managing Confluent's (http://confluent.io/) distribution of Kafka.
 
 Currently only tested on Ubuntu 12.04
 
@@ -59,6 +59,7 @@ Create/Delete topic in cluster
 ###Classes
 ####Public Classes
  * [`confluent_kafka`]
+
 ####Private Classes
  * [`confluent_kafka::config`]
  * [`confluent_kafka::install`]
