@@ -57,6 +57,7 @@ Create/Delete topic in cluster
 ## Reference
 
 ###Classes
+
 ####Public Classes
  * [`confluent_kafka`]
 
