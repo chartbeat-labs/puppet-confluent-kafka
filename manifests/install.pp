@@ -13,9 +13,14 @@ class confluent_kafka::install {
           architecture      => 'all',
           repos             => '',
           required_packages => 'debian-keyring debian-archive-keyring',
-          key               => '1A77041E0314E6C5A486524E670540C841468433',
-          key_source        => 'http://packages.confluent.io/deb/1.0/archive.key',
-          include_src       => false,
+          key               => {
+            'id'            => '1A77041E0314E6C5A486524E670540C841468433',
+            'source'        => 'http://packages.confluent.io/deb/1.0/archive.key',
+          },
+          include           => {
+            'deb'           => true,
+            'src'           => false,
+          },
         }
       }
     }
