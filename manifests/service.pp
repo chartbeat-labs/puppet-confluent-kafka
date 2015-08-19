@@ -1,7 +1,7 @@
 # == Class confluent_kafka::service
 #
 # This class is meant to be called from confluent_kafka.
-# It ensure the service is running.
+# It ensures the service is running.
 #
 class confluent_kafka::service {
   $manage_service_ensure = $::confluent_kafka::manage_service ? {
