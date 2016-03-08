@@ -7,12 +7,16 @@ class confluent_kafka::install {
     'Debian': {
       if $::confluent_kafka::manage_repo {
         include apt
+        ensure_packages(['debian-keyring', 'debian-archive-keyring'])
         apt::source { 'confluent':
           location          => 'http://packages.confluent.io/deb/1.0',
           release           => 'stable main',
           architecture      => 'all',
           repos             => '',
-          required_packages => 'debian-keyring debian-archive-keyring',
+          require           => [
+            Package['debian-keyring'],
+            Package['debian-archive-keyring'],
+          ],
           key               => {
             'id'            => '1A77041E0314E6C5A486524E670540C841468433',
             'source'        => 'http://packages.confluent.io/deb/1.0/archive.key',
