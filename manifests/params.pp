@@ -90,6 +90,7 @@ class confluent_kafka::params {
     'leader.imbalance.check.interval.seconds'       => '300',
     'offset.metadata.max.bytes'                     => '1024',
     'delete.topic.enable'                           => false,
+    'inter.broker.protocol.version'                 => '0.8.2.X'
   }
 
 }
