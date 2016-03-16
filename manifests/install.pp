@@ -9,14 +9,8 @@ class confluent_kafka::install {
         include apt
         ensure_packages(['debian-keyring', 'debian-archive-keyring'])
         apt::source { 'confluent':
-<<<<<<< e33a452cadf21306d7cb05a3b96e6217cc5dfc4c
           location          => "http://packages.confluent.io/deb/${::confluent_kafka::confluent_platform_version}",
           release           => 'stable',
-          location          => "http://packages.confluent.io/deb/${confluent_kafka::confluent_platform_version}",
-=======
-          location          => "http://packages.confluent.io/deb/${::confluent_kafka::platform_version}",
-          release           => 'stable main',
->>>>>>> ..
           architecture      => 'all',
           repos             => 'main',
           require           => [
