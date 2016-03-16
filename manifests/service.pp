@@ -10,10 +10,12 @@ class confluent_kafka::service {
     default => undef,
   }
 
-  service { $::confluent_kafka::service_name:
-    ensure     => $manage_service_ensure,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
+  if $::confluent_kafka::manage_service {
+    service { $::confluent_kafka::service_name:
+      ensure     => $manage_service_ensure,
+      enable     => true,
+      hasstatus  => true,
+      hasrestart => true,
+    }
   }
 }
