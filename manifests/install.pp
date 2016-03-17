@@ -33,7 +33,7 @@ class confluent_kafka::install {
 
   exec { "apt-get update"
     command => "apt-get update",
-    alias   => "apt-update"
+    alias   => "apt-update",
   }
 
   if $::confluent_kafka::install_java {
