@@ -13,6 +13,7 @@ class confluent_kafka::install {
           release           => 'stable',
           architecture      => 'amd64',
           repos             => 'main',
+          notify            => Exec['apt-get update']
           require           => [
             Package['debian-keyring'],
             Package['debian-archive-keyring'],
@@ -38,7 +39,6 @@ class confluent_kafka::install {
 
   package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
     ensure => $::confluent_kafka::version,
-    require  => Exec['apt-get update']
   }
 
   group { 'kafka':
