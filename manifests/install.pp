@@ -2,13 +2,13 @@
 #
 # This class is called from confluent_kafka for install.
 #
+
+exec { 'apt-get update':
+   command => "/usr/bin/apt-get update",
+   alias   => "apt-update",
+}
+
 class confluent_kafka::install {
-
-  exec { 'apt-get update':
-    command => "/usr/bin/apt-get update",
-    alias   => "apt-update",
-  }
-
   case $::osfamily {
     'Debian': {
       if $::confluent_kafka::manage_repo {
@@ -46,6 +46,7 @@ class confluent_kafka::install {
   }
 
   package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
+    require => Exec[apt-update]
     ensure => $::confluent_kafka::version,
   }
 
