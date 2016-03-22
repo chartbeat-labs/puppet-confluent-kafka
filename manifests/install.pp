@@ -46,7 +46,7 @@ class confluent_kafka::install {
   }
 
   package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
-    require => Exec[apt-update]
+    require => Exec[apt-update],
     ensure => $::confluent_kafka::version,
   }
 
