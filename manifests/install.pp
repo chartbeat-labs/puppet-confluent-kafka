@@ -3,6 +3,12 @@
 # This class is called from confluent_kafka for install.
 #
 class confluent_kafka::install {
+
+  exec { 'apt-get update':
+    command => "/usr/bin/apt-get update",
+    alias   => "apt-update",
+  }
+
   case $::osfamily {
     'Debian': {
       if $::confluent_kafka::manage_repo {
@@ -13,7 +19,7 @@ class confluent_kafka::install {
           release           => 'stable',
           architecture      => 'amd64',
           repos             => 'main',
-          notify            => Exec['apt-update'],
+          notify            => Exec[apt-update],
           require           => [
             Package['debian-keyring'],
             Package['debian-archive-keyring'],
@@ -31,10 +37,7 @@ class confluent_kafka::install {
     }
   }
 
-  exec { "apt-get update":
-    command => "/usr/bin/apt-get update",
-    alias   => "apt-update",
-  }
+
 
   if $::confluent_kafka::install_java {
     class { 'java':
