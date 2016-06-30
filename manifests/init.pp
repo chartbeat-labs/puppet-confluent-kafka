@@ -83,6 +83,7 @@ class confluent_kafka (
   $jmx_opts          = $::confluent_kafka::params::jmx_opts,
   $log4j_opts        = $::confluent_kafka::params::log4j_opts,
   $platform_version  = $::confluent_kafka::params::platform_version,
+  $platform_arch     = $::confluent_kafka::params::platform_arch,
 
 ) inherits ::confluent_kafka::params {
 
