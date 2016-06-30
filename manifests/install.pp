@@ -16,10 +16,6 @@ class confluent_kafka::install {
           architecture      => 'amd64',
           repos             => 'main',
           notify            => Exec[apt-update],
-          require           => [
-            Package['debian-keyring'],
-            Package['debian-archive-keyring'],
-          ],
           key               => {
             'id'            => '1A77041E0314E6C5A486524E670540C841468433',
             'source'        => "http://packages.confluent.io/deb/${::confluent_kafka::platform_version}/archive.key",
