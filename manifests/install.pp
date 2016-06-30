@@ -13,7 +13,7 @@ class confluent_kafka::install {
         apt::source { 'confluent':
           location          => "http://packages.confluent.io/deb/${::confluent_kafka::platform_version}",
           release           => 'stable',
-          architecture      => 'all',
+          architecture      => $::confluent_kafka::platform_arch,
           repos             => 'main',
           notify            => Exec[apt-update],
           key               => {
