@@ -84,6 +84,14 @@ class confluent_kafka (
   $log4j_opts        = $::confluent_kafka::params::log4j_opts,
   $platform_version  = $::confluent_kafka::params::platform_version,
   $platform_arch     = $::confluent_kafka::params::platform_arch,
+  # logging levels
+  $root_loglevel           = $::confluent_kafka::params::root_loglevel,
+  $appender_loglevel       = $::confluent_kafka::params::appender_loglevel,
+  $networkrequest_loglevel = $::confluent_kafka::params::networkrequest_loglevel,
+  $request_loglevel        = $::confluent_kafka::params::request_loglevel,
+  $controller_loglevel     = $::confluent_kafka::params::controller_loglevel,
+  $logcleaner_loglevel     = $::confluent_kafka::params::logcleaner_loglevel,
+  $statechange_loglevel    = $::confluent_kafka::params::statechange_loglevel,
 
 ) inherits ::confluent_kafka::params {
 
