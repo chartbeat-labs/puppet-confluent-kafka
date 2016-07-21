@@ -1,6 +1,6 @@
 {
   "name": "chartbeat-confluent_kafka",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Chartbeat",
   "summary": "Installs Confluent's Kafka Package",
   "license": "MIT",

@@ -17,6 +17,10 @@ describe 'confluent_kafka' do
           it { is_expected.to contain_class('confluent_kafka::install').that_comes_before('confluent_kafka::config') }
           it { is_expected.to contain_class('confluent_kafka::config').that_comes_before('confluent_kafka::service') }
           it { is_expected.to contain_package('confluent-kafka-2.10.4').with_ensure('0.8.2.0-1') }
+
+          # Ensure apt repo setup properly
+          it { should contain_file('/etc/apt/sources.list.d/confluent.list') \
+                  .with_content(/1\.0/)}
         end
 
         context "confluent_kafka class with parameters" do
@@ -33,6 +37,7 @@ describe 'confluent_kafka' do
           :manage_repo       => true,
           :jvm_heap_mem      => '-Xmx5G -Xms5G',
           :restart_on_change => true,
+          :platform_version  => '2.0',
           }}
 
           let (:facts) {
@@ -93,7 +98,9 @@ describe 'confluent_kafka' do
           })}
           it { should contain_file('/etc/default/kafka').that_notifies('Class[confluent_kafka::service]') }
 
-
+          # Ensure apt repo setup properly
+          it { should contain_file('/etc/apt/sources.list.d/confluent.list') \
+                  .with_content(/2\.0/)}
         end
       end
     end
