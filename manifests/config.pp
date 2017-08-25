@@ -7,11 +7,12 @@ class confluent_kafka::config {
     true  => Class['confluent_kafka::service'],
     false => undef,
   }
-
+  
   # validate parameters here
   $tmp_config = {
     'zookeeper.connect' => $::confluent_kafka::zk_string,
     'broker.id'         => $::confluent_kafka::brokers[$::fqdn],
+    'brocker.rack'	=> $facts['device']['location']['rack'],
     'log.dirs'          => join($::confluent_kafka::log_dirs, ',')
   }
 
