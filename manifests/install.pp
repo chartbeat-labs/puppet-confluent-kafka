@@ -74,7 +74,7 @@ class confluent_kafka::install {
         mode    => '0644',
         owner   => 'root',
         group   => 'root',
-        content => 'puppet:///modules/confluent_kafka/kafka.systemd.erb',
+        content => template('confluent_kafka/kafka.systemd.erb'),
       }
     }
   }
