@@ -75,6 +75,10 @@ class confluent_kafka::install {
         owner   => 'root',
         group   => 'root',
         content => template('confluent_kafka/kafka.systemd.erb'),
+      } ~>
+      exec { 'systemctl daemon-reload # for kafka':
+        refreshonly => true,
+        notify      => Service[$::confluent_kafka::service_name]
       }
     }
   }
