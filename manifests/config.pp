@@ -24,7 +24,7 @@ class confluent_kafka::config {
     notify  => $notify_service,
   }
 
-  if { $::confluent_kafka::params::initstyle == 'init'} {
+  if ($::confluent_kafka::params::initstyle == 'init') {
     file { '/etc/default/kafka':
       content => template('confluent_kafka/kafka.defaults.erb'),
     }
