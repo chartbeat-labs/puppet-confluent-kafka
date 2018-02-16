@@ -23,6 +23,8 @@ class confluent_kafka::params {
       }
       default: { $initstyle = 'init' }
     }
+   }
+  }
 
   $scala_version     = '2.10.4'
   $platform_version  = '1.0'
