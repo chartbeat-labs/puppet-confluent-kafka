@@ -29,6 +29,11 @@ class confluent_kafka::config {
       content => template('confluent_kafka/kafka.defaults.erb'),
     }
   }
+  else {
+    file { '/etc/default/kafka':
+      content => template('confluent_kafka/kafka.defaults_systemd.erb'),
+    }
+  }
 
   file { '/etc/kafka/server.properties':
     content => template('confluent_kafka/server.properties.erb'),
