@@ -4,6 +4,26 @@
 # It sets variables according to platform.
 #
 class confluent_kafka::params {
+  case $::osfamily {
+  'Debian': {
+    case $::operatingsystem {
+      'Debian': {
+        case $::operatingsystemmajrelease {
+          '7': { $initstyle = 'init' }
+          '8': { $initstyle = 'systemd' }
+          default: { $initstyle = undef }
+        }
+      }
+      'Ubuntu': {
+        case $::operatingsystemmajrelease {
+          '14.04': { $initstyle = 'upstart' }
+          '16.04': { $initstyle = 'systemd' }
+          default: { $initstyle = undef }
+        }
+      }
+      default: { $initstyle = 'init' }
+    }
+
   $scala_version     = '2.10.4'
   $platform_version  = '1.0'
   $service_name      = 'kafka'
