@@ -1,0 +1,20 @@
+[Unit]
+Description=Kafka server
+After=network.target network-online.target
+
+[Service]
+Type=forking
+User=kafka
+Group=kafka
+EnvironmentFile=-/etc/default/kafka
+ExecStart=/usr/bin/kafka-server-start -daemon /etc/kafka/server.properties
+ExecStop=/usr/bin/kafka-server-stop
+TimeoutStopSec=60s
+Restart=on-failure
+StartLimitInterval=0
+RestartSec=10s
+SuccessExitStatus=143
+LimitNOFILE=<%= scope.lookupvar('confluent_kafka::params::max_nofiles')%>
+
+[Install]
+WantedBy=multi-user.target

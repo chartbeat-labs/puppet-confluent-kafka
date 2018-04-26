@@ -61,6 +61,9 @@
 # [*log4j_opts*]
 #   Override Log4J file
 #
+# [extra_args*]
+#   Override Log4J file
+#
 
 class confluent_kafka (
   $package_name      = $::confluent_kafka::params::package_name,
@@ -82,6 +85,7 @@ class confluent_kafka (
   $jvm_perf_opts     = $::confluent_kafka::params::jvm_perf_opts,
   $jmx_opts          = $::confluent_kafka::params::jmx_opts,
   $log4j_opts        = $::confluent_kafka::params::log4j_opts,
+  $extra_args        = $::confluent_kafka::params::extra_args,
   $platform_version  = $::confluent_kafka::params::platform_version,
 
 ) inherits ::confluent_kafka::params {

@@ -35,8 +35,8 @@ class confluent_kafka::install {
 
 
   exec { 'apt-get update':
-    command => "/usr/bin/apt-get update",
-    alias   => "apt-update",
+    command => '/usr/bin/apt-get update',
+    alias   => 'apt-update',
   }
 
   if $::confluent_kafka::install_java {
@@ -46,8 +46,8 @@ class confluent_kafka::install {
   }
 
   package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
+    ensure  => $::confluent_kafka::version,
     require => Exec[apt-update],
-    ensure => $::confluent_kafka::version,
   }
 
   group { 'kafka':
@@ -61,11 +61,25 @@ class confluent_kafka::install {
   }
 
   if $::confluent_kafka::install_service {
-    file { "/etc/init.d/${::confluent_kafka::service_name}":
-      mode   => '0755',
-      owner  => 'root',
-      group  => 'root',
-      source => 'puppet:///modules/confluent_kafka/kafka.init',
+    if ($::confluent_kafka::params::initstyle == 'init') {
+      file { "/etc/init.d/${::confluent_kafka::service_name}":
+        mode   => '0755',
+        owner  => 'root',
+        group  => 'root',
+        source => 'puppet:///modules/confluent_kafka/kafka.init',
+      }
+    }
+    else {
+      file { "/lib/systemd/system/${::confluent_kafka::service_name}.service":
+        mode    => '0644',
+        owner   => 'root',
+        group   => 'root',
+        content => template('confluent_kafka/kafka.systemd.erb'),
+      } ~>
+      exec { 'systemctl daemon-reload # for kafka':
+        refreshonly => true,
+        notify      => Service[$::confluent_kafka::service_name]
+      }
     }
   }
 
