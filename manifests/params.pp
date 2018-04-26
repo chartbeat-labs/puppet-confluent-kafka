@@ -45,6 +45,7 @@ class confluent_kafka::params {
   $jvm_perf_opts     = '-XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35'
   $jmx_opts          = '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=9999'
   $log4j_opts        = '-Dlog4j.configuration=file:/etc/kafka/log4j.properties'
+  $extra_args        = ''
 
   $brokers           = {
       'localhost' => 0,
