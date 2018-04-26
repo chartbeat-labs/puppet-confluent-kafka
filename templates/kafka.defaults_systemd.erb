@@ -6,3 +6,7 @@ KAFKA_LOG4J_OPTS="<%= scope.lookupvar('confluent_kafka::log4j_opts') %>"
 KAFKA_HEAP_OPTS="<%= scope.lookupvar('confluent_kafka::jvm_heap_mem') %>"
 KAFKA_JMX_OPTS="<%= scope.lookupvar('confluent_kafka::jmx_opts') %>"
 KAFKA_JVM_PERFORMANCE_OPTS="<%= scope.lookupvar('confluent_kafka::jvm_perf_opts')%>"
+<%if scope.lookupvar('confluent_kafka::extra_args') != "" -%>
+EXTRA_ARGS="scope.lookupvar('confluent_kafka::jmx_opts')"
+<% end -%>
+
