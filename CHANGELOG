@@ -1,3 +1,6 @@
+2016-11-08 Release 0.5.2
+- Fix bug in apt-get update, dont run on every puppet run
+
 2016-07-21 Release 0.5.1
 - Fix regression introduced in previous release with platform handling
 - Add test coverage

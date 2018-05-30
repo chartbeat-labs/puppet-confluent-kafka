@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
 group :test do
-  gem "rake"
+  gem "rake", '< 11.0'
   gem "puppet", ENV['PUPPET_VERSION'] || '~> 3.7.0'
   gem "rspec", '< 3.2.0'
-  gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
+  gem "rspec-puppet"
   gem "puppetlabs_spec_helper"
-  gem "metadata-json-lint"
+  gem "metadata-json-lint", '~> 1.1.0'
   gem "rspec-puppet-facts"
 end
 
