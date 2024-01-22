@@ -83,7 +83,7 @@ class confluent_kafka (
   $jmx_opts          = $confluent_kafka::params::jmx_opts,
   $log4j_opts        = $confluent_kafka::params::log4j_opts,
   $platform_version  = $confluent_kafka::params::platform_version,
-  $apt_key_id = $confluent_kafka::params::apt_key_id,
+  $apt_key_id        = $confluent_kafka::params::apt_key_id,
 ) inherits confluent_kafka::params {
   # Verification
   validate_array($log_dirs)
