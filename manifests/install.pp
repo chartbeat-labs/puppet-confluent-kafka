@@ -20,7 +20,7 @@ class confluent_kafka::install {
             Package['debian-archive-keyring'],
           ],
           key          => {
-            'name'   => "confluent-${confluent_kafka::platform_version}",
+            'id'     => $confluent_kafka::apt_key_id,
             'source' => "http://packages.confluent.io/deb/${confluent_kafka::platform_version}/archive.key",
           },
           include      => {

@@ -7,7 +7,7 @@ class confluent_kafka::params {
   $scala_version     = '2.10.4'
   $platform_version  = '1.0'
   $service_name      = 'kafka'
-  $package_name      = "confluent-kafka"
+  $package_name      = 'confluent-kafka'
   $version           = '0.8.2.0-1'
   $install_java      = false
   $install_service   = true
@@ -23,9 +23,10 @@ class confluent_kafka::params {
   $jvm_perf_opts     = '-XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35'
   $jmx_opts          = '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=9999'
   $log4j_opts        = '-Dlog4j.configuration=file:/etc/kafka/log4j.properties'
+  $apt_key_id = '1A77041E0314E6C5A486524E670540C841468433'
 
   $brokers           = {
-      'localhost' => 0,
+    'localhost' => 0,
   }
 
   $kafka_config_defaults = {
@@ -90,7 +91,6 @@ class confluent_kafka::params {
     'leader.imbalance.check.interval.seconds'       => '300',
     'offset.metadata.max.bytes'                     => '1024',
     'delete.topic.enable'                           => false,
-    'inter.broker.protocol.version'                 => '0.8.2.X'
+    'inter.broker.protocol.version'                 => '0.8.2.X',
   }
-
 }
