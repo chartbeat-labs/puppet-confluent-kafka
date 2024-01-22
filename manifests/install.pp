@@ -46,7 +46,12 @@ class confluent_kafka::install {
     }
   }
 
-  package { "${::confluent_kafka::package_name}-${::confluent_kafka::scala_version}":
+  $_pkg_name = versioncmp($confluent_kafka::platform_version, '6.0') ? {
+    -1 => ${confluent_kafka::package_name}-${::confluent_kafka::scala_version},
+    default => $confluent_kafka::package_name
+  }
+
+  package { $_pkg_name:
     require => Exec[apt-update],
     ensure => $::confluent_kafka::version,
   }
