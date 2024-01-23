@@ -1,3 +1,7 @@
+2024-01-23 Release 0.5.3
+- Add support for installing platform version 6+
+- Make apt key ID configurable
+
 2016-11-08 Release 0.5.2
 - Fix bug in apt-get update, dont run on every puppet run
 
