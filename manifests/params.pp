@@ -4,28 +4,29 @@
 # It sets variables according to platform.
 #
 class confluent_kafka::params {
-  $scala_version     = '2.10.4'
-  $platform_version  = '1.0'
-  $service_name      = 'kafka'
-  $package_name      = "confluent-kafka"
-  $version           = '0.8.2.0-1'
+  $app_log_dir       = '/var/log/kafka'
+  $apt_key_id = '1A77041E0314E6C5A486524E670540C841468433'
   $install_java      = false
   $install_service   = true
-  $restart_on_change = false
-  $manage_service    = true
-  $manage_repo       = true
-  $zk_hosts          = ['localhost:2181']
-  $zk_chroot         = ''
-  $max_nofiles       = '65535'
-  $log_dirs          = ['/tmp/kafka-logs']
-  $app_log_dir       = '/var/log/kafka'
+  $jmx_opts          = '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=9999'
   $jvm_heap_mem      = '-Xmx1G -Xms1G'
   $jvm_perf_opts     = '-XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35'
-  $jmx_opts          = '-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=9999'
+  $log_dirs          = ['/tmp/kafka-logs']
   $log4j_opts        = '-Dlog4j.configuration=file:/etc/kafka/log4j.properties'
+  $manage_repo       = true
+  $manage_service    = true
+  $max_nofiles       = '65535'
+  $package_name      = 'confluent-kafka'
+  $platform_version  = '1.0'
+  $restart_on_change = false
+  $scala_version     = '2.10.4'
+  $service_name      = 'kafka'
+  $version           = '0.8.2.0-1'
+  $zk_chroot         = ''
+  $zk_hosts          = ['localhost:2181']
 
   $brokers           = {
-      'localhost' => 0,
+    'localhost' => 0,
   }
 
   $kafka_config_defaults = {
@@ -90,7 +91,6 @@ class confluent_kafka::params {
     'leader.imbalance.check.interval.seconds'       => '300',
     'offset.metadata.max.bytes'                     => '1024',
     'delete.topic.enable'                           => false,
-    'inter.broker.protocol.version'                 => '0.8.2.X'
+    'inter.broker.protocol.version'                 => '0.8.2.X',
   }
-
 }
