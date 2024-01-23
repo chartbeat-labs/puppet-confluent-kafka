@@ -12,3 +12,4 @@ tests/
 log/
 junit/
 tmp/
+.git*
