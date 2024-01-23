@@ -4,6 +4,9 @@
 #
 # === Parameters
 #
+# [*apt_key_id*]
+#   The GPG key ID for the apt repository. Only used if manage_repo is true.
+#
 # [*package_name*]
 #   Base name of the package, we append *scala_version*  to get full name
 #
@@ -63,27 +66,27 @@
 #
 
 class confluent_kafka (
-  $package_name      = $confluent_kafka::params::package_name,
-  $service_name      = $confluent_kafka::params::service_name,
+  $app_log_dir       = $confluent_kafka::params::app_log_dir,
+  $apt_key_id        = $confluent_kafka::params::apt_key_id,
   $brokers           = $confluent_kafka::params::brokers,
-  $scala_version     = $confluent_kafka::params::scala_version,
-  $version           = $confluent_kafka::params::version,
   $install_java      = $confluent_kafka::params::install_java,
   $install_service   = $confluent_kafka::params::install_service,
-  $restart_on_change = $confluent_kafka::params::restart_on_change,
-  $manage_service    = $confluent_kafka::params::manage_service,
-  $manage_repo       = $confluent_kafka::params::manage_repo,
-  $kafka_config      = $confluent_kafka::params::kafka_config_defaults,
-  $zk_hosts          = $confluent_kafka::params::zk_hosts,
-  $zk_chroot         = $confluent_kafka::params::zk_chroot,
-  $log_dirs          = $confluent_kafka::params::log_dirs,
-  $app_log_dir       = $confluent_kafka::params::app_log_dir,
+  $jmx_opts          = $confluent_kafka::params::jmx_opts,
   $jvm_heap_mem      = $confluent_kafka::params::jvm_heap_mem,
   $jvm_perf_opts     = $confluent_kafka::params::jvm_perf_opts,
-  $jmx_opts          = $confluent_kafka::params::jmx_opts,
+  $kafka_config      = $confluent_kafka::params::kafka_config_defaults,
+  $log_dirs          = $confluent_kafka::params::log_dirs,
   $log4j_opts        = $confluent_kafka::params::log4j_opts,
+  $manage_repo       = $confluent_kafka::params::manage_repo,
+  $manage_service    = $confluent_kafka::params::manage_service,
+  $package_name      = $confluent_kafka::params::package_name,
   $platform_version  = $confluent_kafka::params::platform_version,
-  $apt_key_id        = $confluent_kafka::params::apt_key_id,
+  $restart_on_change = $confluent_kafka::params::restart_on_change,
+  $scala_version     = $confluent_kafka::params::scala_version,
+  $service_name      = $confluent_kafka::params::service_name,
+  $version           = $confluent_kafka::params::version,
+  $zk_chroot         = $confluent_kafka::params::zk_chroot,
+  $zk_hosts          = $confluent_kafka::params::zk_hosts,
 ) inherits confluent_kafka::params {
   # Verification
   validate_array($log_dirs)
